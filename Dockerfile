@@ -9,11 +9,12 @@ RUN npm install
 # Copier le reste du code source
 COPY . .
 
-# Générer le build
+# Générer le client Prisma puis compiler TypeScript
+RUN npx prisma generate
 RUN npm run build
 
 # Exposer le port
 EXPOSE 8080
 
 # Commande de démarrage
-CMD ["node", "dist/index.js"]
+CMD ["npm", "start"]
