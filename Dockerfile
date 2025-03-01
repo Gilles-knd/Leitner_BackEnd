@@ -11,10 +11,11 @@ COPY . .
 
 # Générer le client Prisma puis compiler TypeScript
 RUN npx prisma generate
+
 RUN npm run build
 
 # Exposer le port
 EXPOSE 8080
 
 # Commande de démarrage
-CMD ["npm", "start"]
+CMD npx prisma migrate deploy && npm start
