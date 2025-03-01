@@ -1,5 +1,5 @@
-import {IsString, IsNotEmpty, IsOptional} from "class-validator";
-import {Category} from "../../domain/types/Category.ts";
+import { IsString, IsNotEmpty, IsOptional } from "class-validator";
+import { Category } from "../../domain/types/Category";
 
 export class CardDTO {
   @IsString()
@@ -28,4 +28,3 @@ export interface CardResponse {
   answer?: string;
   tag?: string;
 }
-

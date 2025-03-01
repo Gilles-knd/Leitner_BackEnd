@@ -1,12 +1,12 @@
-import { Card } from "../../../src/domain/entities/Card.ts";
-import { ICardRepository } from "../../../src/domain/repositories/ICardRepository.ts";
+import { Card } from "../../../src/domain/entities/Card";
+import { ICardRepository } from "../../../src/domain/repositories/ICardRepository";
 import { mock } from "jest-mock-extended";
-import { Category } from "../../../src/domain/types/Category.ts";
-import { AnswerCardUseCase } from "../../../src/application/use-cases/AnswerCardUseCase.ts";
-import { IReviewRepository } from "../../../src/domain/repositories/IReviewRepository.ts";
-import { GetQuizzCardsUseCase } from "../../../src/application/use-cases/GetQuizzCardsUseCase.ts";
-import { AnswerCardDTO } from "../../../src/application/dtos/AnswerCardDTO.ts";
-import { LeitnerService } from "../../../src/application/services/LeitnerService.ts";
+import { Category } from "../../../src/domain/types/Category";
+import { AnswerCardUseCase } from "../../../src/application/use-cases/AnswerCardUseCase";
+import { IReviewRepository } from "../../../src/domain/repositories/IReviewRepository";
+import { GetQuizzCardsUseCase } from "../../../src/application/use-cases/GetQuizzCardsUseCase";
+import { AnswerCardDTO } from "../../../src/application/dtos/AnswerCardDTO";
+import { LeitnerService } from "../../../src/application/services/LeitnerService";
 
 describe("AnswerCardUseCase", () => {
   const mockCardRepo = mock<ICardRepository>();

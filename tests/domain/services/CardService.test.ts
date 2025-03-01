@@ -1,6 +1,6 @@
-import {Card} from "../../../src/domain/entities/Card.ts";
-import {CardService} from "../../../src/domain/services/CardService.ts";
-import {Category} from "../../../src/domain/types/Category.ts";
+import {Card} from "../../../src/domain/entities/Card";
+import {CardService} from "../../../src/domain/services/CardService";
+import {Category} from "../../../src/domain/types/Category";
 
 describe('CardService', () => {
     describe('handleAnswerSubmission', () => {

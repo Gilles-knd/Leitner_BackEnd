@@ -1,4 +1,4 @@
-import {Card} from "../entities/Card.ts";
+import {Card} from "../entities/Card";
 
 export class CardService {
 

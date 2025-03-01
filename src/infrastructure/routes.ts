@@ -1,13 +1,13 @@
 import express from "express";
-import { CardController } from "./controllers/CardController.ts";
-import { CardRepository } from "./repositories/CardRepository.ts";
-import { CreateCardUseCase } from "../application/use-cases/CreateCardUseCase.ts";
-import { GetCardsUseCase } from "../application/use-cases/GetCardsUseCase.ts";
-import { UpdateCardUseCase } from "../application/use-cases/UpdateCardUseCase.ts";
-import { DeleteCardUseCase } from "../application/use-cases/DeleteCardUseCase.ts";
-import { GetQuizzCardsUseCase } from "../application/use-cases/GetQuizzCardsUseCase.ts";
-import { ReviewRepository } from "./repositories/ReviewRepository.ts";
-import { AnswerCardUseCase } from "../application/use-cases/AnswerCardUseCase.ts";
+import { CardController } from "./controllers/CardController";
+import { CardRepository } from "./repositories/CardRepository";
+import { CreateCardUseCase } from "../application/use-cases/CreateCardUseCase";
+import { GetCardsUseCase } from "../application/use-cases/GetCardsUseCase";
+import { UpdateCardUseCase } from "../application/use-cases/UpdateCardUseCase";
+import { DeleteCardUseCase } from "../application/use-cases/DeleteCardUseCase";
+import { GetQuizzCardsUseCase } from "../application/use-cases/GetQuizzCardsUseCase";
+import { ReviewRepository } from "./repositories/ReviewRepository";
+import { AnswerCardUseCase } from "../application/use-cases/AnswerCardUseCase";
 
 export const initRoutes = (app: express.Express) => {
   const cardRepository = new CardRepository();

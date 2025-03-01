@@ -1,6 +1,6 @@
-import { Review } from "../../domain/entities/Review.ts";
-import { IReviewRepository } from "../../domain/repositories/IReviewRepository.ts";
-import db from "../db/prisma.ts";
+import { Review } from "../../domain/entities/Review";
+import { IReviewRepository } from "../../domain/repositories/IReviewRepository";
+import db from "../db/prisma";
 
 export class ReviewRepository implements IReviewRepository {
   async save(review: Review): Promise<Review> {

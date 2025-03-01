@@ -1,4 +1,4 @@
-import { ICardRepository } from "../../domain/repositories/ICardRepository.ts";
+import { ICardRepository } from "../../domain/repositories/ICardRepository";
 
 export class DeleteCardUseCase {
   constructor(private cardRepository: ICardRepository) {}

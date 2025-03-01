@@ -1,38 +1,29 @@
 import express from "express";
-import { initRoutes } from "./infrastructure/routes.ts";
-import cors from "cors";
-import { config } from "dotenv";
-import morgan from "morgan";
+import { PrismaClient } from "@prisma/client";
+import { initRoutes } from "./infrastructure/routes";
 
-config();
+const prisma = new PrismaClient();
+const app = express();
+const port = process.env.PORT || 8080;
 
-const main = async () => {
-  const app = express();
-  const port = Number(process.env.PORT);
+// Middleware
+app.use(express.json());
 
-  //Log
-  if (process.env.NODE_ENV == "development") {
-    app.use(morgan("dev"));
-  } else {
-    app.use(morgan("combined"));
-  }
+// Routes
+initRoutes(app);
 
-  try {
-    console.log("Datasource initialized");
-  } catch (error) {
-    console.log(error);
-    console.error("Cannot contact database.");
-    process.exit(1);
-  }
-  app.use(cors());
-  app.listen(port, () => {
-    console.log(`Server running on port ${port}`);
-    app.use(express.json({ limit: "50mb" }));
-    initRoutes(app);
-  });
-};
+// Healthcheck
+app.get("/health", (_req, res) => {
+  res.status(200).json({ status: "ok" });
+});
 
-main().catch(async (e) => {
-  console.error(e);
-  process.exit(1);
+// Start server
+app.listen(port, () => {
+  console.log(`Server running on port ${port}`);
+});
+
+// Handle shutdown correctly
+process.on("SIGINT", async () => {
+  await prisma.$disconnect();
+  process.exit(0);
 });

@@ -1,9 +1,9 @@
-import { ICardRepository } from "../../domain/repositories/ICardRepository.ts";
-import { IReviewRepository } from "../../domain/repositories/IReviewRepository.ts";
-import { Review } from "../../domain/entities/Review.ts";
-import { LeitnerService } from "../services/LeitnerService.ts";
-import { AnswerCardDTO } from "../dtos/AnswerCardDTO.ts";
-import { GetQuizzCardsUseCase } from "./GetQuizzCardsUseCase.ts";
+import { ICardRepository } from "../../domain/repositories/ICardRepository";
+import { IReviewRepository } from "../../domain/repositories/IReviewRepository";
+import { Review } from "../../domain/entities/Review";
+import { LeitnerService } from "../services/LeitnerService";
+import { AnswerCardDTO } from "../dtos/AnswerCardDTO";
+import { GetQuizzCardsUseCase } from "./GetQuizzCardsUseCase";
 
 export class AnswerCardUseCase {
   constructor(

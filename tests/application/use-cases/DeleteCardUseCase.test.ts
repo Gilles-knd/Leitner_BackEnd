@@ -1,5 +1,5 @@
-import { DeleteCardUseCase } from "../../../src/application/use-cases/DeleteCardUseCase.ts";
-import { ICardRepository } from "../../../src/domain/repositories/ICardRepository.ts";
+import { DeleteCardUseCase } from "../../../src/application/use-cases/DeleteCardUseCase";
+import { ICardRepository } from "../../../src/domain/repositories/ICardRepository";
 import { mock } from "jest-mock-extended";
 
 describe("DeleteCardUseCase", () => {

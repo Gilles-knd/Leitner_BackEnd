@@ -1,10 +1,10 @@
-import {ICardRepository} from "../../domain/repositories/ICardRepository.ts";
-import {Card} from "../../domain/entities/Card.ts";
+import { ICardRepository } from "../../domain/repositories/ICardRepository";
+import { Card } from "../../domain/entities/Card";
 
 export class GetCardsUseCase {
-    constructor(private repository: ICardRepository) {}
+  constructor(private repository: ICardRepository) {}
 
-    async execute(tags?: string[]): Promise<Card[]> {
-        return this.repository.findByTags(tags);
-    }
+  async execute(tags?: string[]): Promise<Card[]> {
+    return this.repository.findByTags(tags);
+  }
 }

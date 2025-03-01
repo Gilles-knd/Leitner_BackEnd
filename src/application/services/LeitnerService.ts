@@ -1,6 +1,6 @@
-import { Card } from "../../domain/entities/Card.ts";
-import { Category } from "../../domain/types/Category.ts";
-import { IReviewRepository } from "../../domain/repositories/IReviewRepository.ts";
+import { Card } from "../../domain/entities/Card";
+import { Category } from "../../domain/types/Category";
+import { IReviewRepository } from "../../domain/repositories/IReviewRepository";
 
 export class LeitnerService {
   private static readonly INTERVALS: Record<Category, number> = {

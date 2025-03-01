@@ -1,12 +1,11 @@
 import { mock } from "jest-mock-extended";
-import { ICardRepository } from "../../../src/domain/repositories/ICardRepository.ts";
-import { CreateCardUseCase } from "../../../src/application/use-cases/CreateCardUseCase.ts";
-import { Category } from "../../../src/domain/types/Category.ts";
-import { Card } from "../../../src/domain/entities/Card.ts";
-import {CardDTO} from "../../../src/application/dtos/CardDTO.ts";
+import { ICardRepository } from "../../../src/domain/repositories/ICardRepository";
+import { CreateCardUseCase } from "../../../src/application/use-cases/CreateCardUseCase";
+import { Category } from "../../../src/domain/types/Category";
+import { Card } from "../../../src/domain/entities/Card";
+import { CardDTO } from "../../../src/application/dtos/CardDTO";
 
 describe("CreateCardUseCase", () => {
-
   const mockRepo = mock<ICardRepository>();
   const useCase = new CreateCardUseCase(mockRepo);
 
@@ -14,7 +13,9 @@ describe("CreateCardUseCase", () => {
     const dto = new CardDTO("Question ?", "Réponse", "Tag");
 
     mockRepo.findSimilar.mockResolvedValue(null);
-    mockRepo.save.mockResolvedValue(new Card("1", Category.FIRST, dto.question, dto.answer, dto.tag));
+    mockRepo.save.mockResolvedValue(
+      new Card("1", Category.FIRST, dto.question, dto.answer, dto.tag),
+    );
 
     const card = await useCase.execute(dto);
     expect(mockRepo.findSimilar).toHaveBeenCalledWith(dto.question, dto.answer);
@@ -26,30 +27,39 @@ describe("CreateCardUseCase", () => {
   });
 
   it("should throw an error if a similar card already exists", async () => {
-      const dto = new CardDTO("Question ?", "Réponse", "Tag");
-      const existingCard = new Card("1", Category.FIRST, dto.question, dto.answer, dto.tag);
+    const dto = new CardDTO("Question ?", "Réponse", "Tag");
+    const existingCard = new Card(
+      "1",
+      Category.FIRST,
+      dto.question,
+      dto.answer,
+      dto.tag,
+    );
 
-      mockRepo.findSimilar.mockResolvedValue(existingCard);
+    mockRepo.findSimilar.mockResolvedValue(existingCard);
 
-      await expect(useCase.execute(dto)).rejects.toThrowError('a similar card already exists');
-      expect(mockRepo.findSimilar).toHaveBeenCalledWith(dto.question, dto.answer);
-      expect(mockRepo.save).not.toHaveBeenCalled();
+    await expect(useCase.execute(dto)).rejects.toThrowError(
+      "a similar card already exists",
+    );
+    expect(mockRepo.findSimilar).toHaveBeenCalledWith(dto.question, dto.answer);
+    expect(mockRepo.save).not.toHaveBeenCalled();
   });
 
-
   it("should create a card without tag", async () => {
-      const dto = new CardDTO("Question ?", "Réponse");
+    const dto = new CardDTO("Question ?", "Réponse");
 
-      mockRepo.findSimilar.mockResolvedValue(null);
-      mockRepo.save.mockResolvedValue(new Card("1", Category.FIRST, dto.question, dto.answer, dto.tag));
+    mockRepo.findSimilar.mockResolvedValue(null);
+    mockRepo.save.mockResolvedValue(
+      new Card("1", Category.FIRST, dto.question, dto.answer, dto.tag),
+    );
 
-      const card = await useCase.execute(dto);
+    const card = await useCase.execute(dto);
 
-      expect(mockRepo.findSimilar).toHaveBeenCalledWith(dto.question, dto.answer);
-      expect(mockRepo.save).toHaveBeenCalled();
-      expect(card.question).toBe(dto.question);
-      expect(card.answer).toBe(dto.answer);
-      expect(card.tag).toBeUndefined();
-      expect(card.category).toBe(Category.FIRST);
+    expect(mockRepo.findSimilar).toHaveBeenCalledWith(dto.question, dto.answer);
+    expect(mockRepo.save).toHaveBeenCalled();
+    expect(card.question).toBe(dto.question);
+    expect(card.answer).toBe(dto.answer);
+    expect(card.tag).toBeUndefined();
+    expect(card.category).toBe(Category.FIRST);
   });
 });

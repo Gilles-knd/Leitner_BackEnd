@@ -1,7 +1,7 @@
 import { ICardRepository } from "../../domain/repositories/ICardRepository";
 import db from "../db/prisma";
-import { Card } from "../../domain/entities/Card.ts";
-import { Category } from "../../domain/types/Category.ts";
+import { Card } from "../../domain/entities/Card";
+import { Category } from "../../domain/types/Category";
 
 export class CardRepository implements ICardRepository {
   async save(card: Card): Promise<Card> {

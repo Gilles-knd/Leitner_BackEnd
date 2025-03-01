@@ -2,15 +2,16 @@ import { Request, Response } from "express";
 import { CreateCardUseCase } from "../../application/use-cases/CreateCardUseCase";
 import { CardDTO } from "../../application/dtos/CardDTO";
 import { validateOrReject, ValidationError } from "class-validator";
-import { GetCardsUseCase } from "../../application/use-cases/GetCardsUseCase.ts";
+import { GetCardsUseCase } from "../../application/use-cases/GetCardsUseCase";
 import { plainToInstance } from "class-transformer";
-import { GetCardsQueryParamsDTO } from "../../application/dtos/GetCardsQueryParams.ts";
-import { CardAdapter } from "../adapters/CardAdapter.ts";
-import { UpdateCardUseCase } from "../../application/use-cases/UpdateCardUseCase.ts";
-import { DeleteCardUseCase } from "../../application/use-cases/DeleteCardUseCase.ts";
-import { GetQuizzCardsUseCase } from "../../application/use-cases/GetQuizzCardsUseCase.ts";
-import { AnswerCardUseCase } from "../../application/use-cases/AnswerCardUseCase.ts";
-import { AnswerCardDTO } from "../../application/dtos/AnswerCardDTO.ts";
+import { GetCardsQueryParamsDTO } from "../../application/dtos/GetCardsQueryParams";
+import { CardAdapter } from "../adapters/CardAdapter";
+import { UpdateCardUseCase } from "../../application/use-cases/UpdateCardUseCase";
+import { DeleteCardUseCase } from "../../application/use-cases/DeleteCardUseCase";
+import { GetQuizzCardsUseCase } from "../../application/use-cases/GetQuizzCardsUseCase";
+import { AnswerCardUseCase } from "../../application/use-cases/AnswerCardUseCase";
+import { AnswerCardDTO } from "../../application/dtos/AnswerCardDTO";
+import { Card } from "../../domain/entities/Card";
 export class CardController {
   constructor(
     private readonly createCardUseCase: CreateCardUseCase,
@@ -59,7 +60,7 @@ export class CardController {
 
       res
         .status(200)
-        .json(cards.map((card) => CardAdapter.toResponse(card, true)));
+        .json(cards.map((card: Card) => CardAdapter.toResponse(card, true)));
       return;
     } catch (error: any) {
       res.status(400).json({ error: error.message || "Failed to fetch cards" });

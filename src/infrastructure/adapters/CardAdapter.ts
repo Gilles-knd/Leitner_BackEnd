@@ -1,15 +1,15 @@
 import { Card } from "../../domain/entities/Card";
-import {CardDTO, CardResponse} from "../../application/dtos/CardDTO";
+import { CardDTO, CardResponse } from "../../application/dtos/CardDTO";
 import { Category } from "../../domain/types/Category";
 
 export class CardAdapter {
   static fromDTOtoDomain(dto: CardDTO): Card {
     return new Card(
-        undefined,
-        Category.FIRST,
-        dto.question,
-        dto.answer,
-        dto.tag
+      undefined,
+      Category.FIRST,
+      dto.question,
+      dto.answer,
+      dto.tag,
     );
   }
 

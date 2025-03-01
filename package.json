@@ -3,11 +3,11 @@
   "version": "1.0.0",
   "description": "",
   "main": "dist/index.js",
-  "type": "module",
   "scripts": {
     "test": "jest --config jest.config.ts",
     "test:watch": "jest --watch --config jest.config.ts",
     "build": "tsc",
+    "start": "node dist/index.js",
     "start:dev": "nodemon -e ts -x \"npx tsx src/index.ts\""
   },
   "keywords": [],
