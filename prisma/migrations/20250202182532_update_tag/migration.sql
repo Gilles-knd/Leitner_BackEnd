@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE "Card" ALTER COLUMN "tag" DROP NOT NULL;
