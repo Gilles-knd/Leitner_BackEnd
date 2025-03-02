@@ -7,17 +7,19 @@ const prisma = new PrismaClient();
 const app = express();
 const port = process.env.PORT || 8080;
 
+
+
 // Middleware
 app.use(express.json());
-
-// Routes
-initRoutes(app);
 
 app.use(cors({
   origin: "*",
   methods: ["GET", "POST", "PUT", "DELETE"],
   allowedHeaders: ["Content-Type", "Authorization"],
 }));
+
+// Routes
+initRoutes(app);
 
 // Healthcheck
 app.get("/health", (_req, res) => {
